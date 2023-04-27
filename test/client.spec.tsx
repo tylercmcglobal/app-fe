@@ -1,15 +1,15 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import '@testing-library/jest-dom'
+import '@testing-library/jest-dom';
 import Client from '../src/pages/client';
 import * as MockedSocket from 'socket.io-mock';
 import { SocketContext } from '../src/context/socket';
 
 jest.mock('socket.io-client');
 
-describe("test client UI", () => {
+describe('test client UI', () => {
   afterEach(() => {
     jest.clearAllMocks();
-  })
+  });
 
   test('should render button with name Orange', () => {
     render(<Client />);
@@ -27,8 +27,8 @@ describe("test client UI", () => {
       <SocketContext.Provider value={socket.socketClient}>
         <Client />
       </SocketContext.Provider>
-    )
-    render(<TestComponent />)
+    );
+    render(<TestComponent />);
 
     socket.on('orange', (message: string) => {
       expect(message).toBe('click');
@@ -44,8 +44,8 @@ describe("test client UI", () => {
       <SocketContext.Provider value={socket.socketClient}>
         <Client />
       </SocketContext.Provider>
-    )
-    render(<TestComponent />)
+    );
+    render(<TestComponent />);
 
     socket.on('blue', (message: string) => {
       expect(message).toBe('click');

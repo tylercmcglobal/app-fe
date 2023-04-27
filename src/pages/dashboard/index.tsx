@@ -1,10 +1,11 @@
-import { useContext, useEffect, useState } from "react";
-import { SocketContext } from "../../context/socket";
-import BarChart from "./chart";
+import React from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { SocketContext } from '../../context/socket';
+import BarChart from './chart';
 
 const Dashboard = () => {
-  const [numberOfBlueClick, setNumberOfBlueClick] = useState(0)
-  const [numberOfOrangeClick, setNumberOfOrangeClick] = useState(0)
+  const [numberOfBlueClick, setNumberOfBlueClick] = useState(0);
+  const [numberOfOrangeClick, setNumberOfOrangeClick] = useState(0);
   const socket = useContext(SocketContext);
   const chartData = {
     labels: ['Orange', 'Blue'],
@@ -14,26 +15,25 @@ const Dashboard = () => {
         backgroundColor: ['orange', 'blue'],
         borderColor: 'rgb(0, 255, 0)',
         borderWidth: 1,
-        data: [numberOfOrangeClick, numberOfBlueClick]
-      }
-    ]
-  }
+        data: [numberOfOrangeClick, numberOfBlueClick],
+      },
+    ],
+  };
 
   useEffect(() => {
     socket.on('orange', (data: number) => {
-      setNumberOfOrangeClick(data)
-    })
+      setNumberOfOrangeClick(data);
+    });
     socket.on('blue', (data: number) => {
-      setNumberOfBlueClick(data)
-    })
-
-  }, [])
+      setNumberOfBlueClick(data);
+    });
+  }, []);
 
   return (
     <div>
       <BarChart chartData={chartData} />
     </div>
-  )
-}
+  );
+};
 
 export default Dashboard;
