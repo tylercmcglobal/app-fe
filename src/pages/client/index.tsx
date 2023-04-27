@@ -2,28 +2,27 @@ import { useContext, useEffect, useState } from 'react';
 import { SocketContext } from '../../context/socket';
 
 const Client = () => {
-    const socket = useContext(SocketContext);
-    let [numberOfClickOrange, setNumberOfClickOrange] = useState(0);
-    let [numberOfClickBlue, setNumberOfClickBlue] = useState(0);
+  const socket = useContext(SocketContext);
+  const [numberOfClickOrange, setNumberOfClickOrange] = useState(0);
+  const [numberOfClickBlue, setNumberOfClickBlue] = useState(0);
 
-    useEffect(() => {
-        socket.emit('orange', numberOfClickOrange);
-        socket.emit('blue', numberOfClickBlue);
-    }, [numberOfClickBlue, numberOfClickOrange])
+  useEffect(() => {
+    socket.emit('orange', numberOfClickOrange);
+    socket.emit('blue', numberOfClickBlue);
+  }, [numberOfClickBlue, numberOfClickOrange])
 
-    const handleClickButton = (color: string) => {
-        if (color === 'orange') {
-            setNumberOfClickOrange(++numberOfClickOrange);
-        } else {
-            setNumberOfClickBlue(++numberOfClickBlue);
-        }
-    }
-    return (
-        <div>
-            <button style={{backgroundColor:'orange', margin: '10px'}} onClick={() => handleClickButton('orange')}>Orange</button>
-            <button style={{backgroundColor:'blue', margin: '10px'}} onClick={() => handleClickButton('blue')}>Blue</button>
-        </div>
-    )
+  const handleClickOrangeButton = () => {
+    setNumberOfClickOrange(numberOfClickOrange + 1);
+  }
+  const handleClickBlueButton = () => {
+    setNumberOfClickBlue(numberOfClickBlue + 1);
+  }
+  return (
+    <div>
+      <button style={{ backgroundColor: 'orange', margin: '10px' }} onClick={() => handleClickOrangeButton()}>Orange</button>
+      <button style={{ backgroundColor: 'blue', margin: '10px' }} onClick={() => handleClickBlueButton()}>Blue</button>
+    </div>
+  )
 }
 
 export default Client;

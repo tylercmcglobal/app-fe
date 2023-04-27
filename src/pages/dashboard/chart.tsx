@@ -16,7 +16,7 @@ interface ChartProps {
 const BarChart = (props: { chartData: ChartProps }) => {
   const { chartData } = props;
   return (
-    <div className="chart-container" style={{width: '1200px'}}>
+    <div className="chart-container" style={{ width: '1200px' }}>
       <h2 style={{ textAlign: "center" }}>Bar Chart</h2>
       <Bar
         data={chartData}
@@ -49,7 +49,7 @@ const BarChart = (props: { chartData: ChartProps }) => {
                 font: {
                   size: 16
                 }
-              } 
+              }
             }
           }
         }}
